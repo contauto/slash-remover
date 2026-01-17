@@ -1,0 +1,46 @@
+{
+    "header": {
+        "title": "Cleantify",
+        "subtitle": "Character Remover Tool"
+    },
+    "main": {
+        "inputLabel": "Text Input",
+        "inputPlaceholder": "Paste your text here...",
+        "outputLabel": "Processed Text",
+        "outputPlaceholder": "Your cleaned text will appear here...",
+        "processButton": "Clean Text",
+        "copyButton": "Copy",
+        "copied": "Copied!",
+        "clearButton": "Clear"
+    },
+    "characters": {
+        "title": "Characters to Remove",
+        "placeholder": "Type a character...",
+        "addButton": "Add",
+        "presets": "Quick Add:",
+        "backslash": "Backslash",
+        "quote": "Quote",
+        "doubleQuote": "Double Quote",
+        "newline": "New Line",
+        "tab": "Tab"
+    },
+    "mode": {
+        "title": "Removal Mode",
+        "consecutive": "Consecutive Only",
+        "consecutiveDesc": "Remove only when characters appear side by side",
+        "individual": "All Occurrences",
+        "individualDesc": "Remove all instances regardless of position"
+    },
+    "footer": {
+        "madeWith": "Made with",
+        "by": "by"
+    },
+    "theme": {
+        "light": "Light Mode",
+        "dark": "Dark Mode"
+    },
+    "stats": {
+        "characters": "characters",
+        "removed": "removed"
+    }
+}

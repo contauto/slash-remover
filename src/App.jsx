@@ -1,51 +1,131 @@
-import { useState } from "react"
+import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import './i18n'
+import './index.css'
 
-import removeBackslash from "./utils/removeBackslash"
+import Header from './components/Header'
+import Footer from './components/Footer'
+import CharacterInput from './components/CharacterInput'
+import ModeSelector from './components/ModeSelector'
+import TextPanel from './components/TextPanel'
+import { removeCharacters } from './utils/removeCharacters'
+import useTheme from './hooks/useTheme'
+
 const App = () => {
-  const [inputText, setInputText] = useState("")
-  const [processedText, setProcessedText] = useState("")
+  const { t } = useTranslation()
+  const { theme, toggleTheme } = useTheme()
 
-  const handleTextChange = (event) => {
-    setInputText(event.target.value)
+  const [inputText, setInputText] = useState('')
+  const [outputText, setOutputText] = useState('')
+  const [characters, setCharacters] = useState(['\\'])
+  const [mode, setMode] = useState('individual')
+  const [removedCount, setRemovedCount] = useState(0)
+
+  // Process text whenever input, characters, or mode changes
+  useEffect(() => {
+    if (inputText && characters.length > 0) {
+      const { result, removedCount: count } = removeCharacters(
+        inputText,
+        characters,
+        mode === 'consecutive'
+      )
+      setOutputText(result)
+      setRemovedCount(count)
+    } else {
+      setOutputText(inputText)
+      setRemovedCount(0)
+    }
+  }, [inputText, characters, mode])
+
+  const handleAddCharacter = (char) => {
+    if (!characters.includes(char)) {
+      setCharacters([...characters, char])
+    }
   }
 
-  const handleProcessText = () => {
-    const processed = removeBackslash(inputText)
-    setProcessedText(processed)
+  const handleRemoveCharacter = (char) => {
+    setCharacters(characters.filter(c => c !== char))
+  }
+
+  const handleClearInput = () => {
+    setInputText('')
+    setOutputText('')
+    setRemovedCount(0)
   }
 
   return (
-    <div className="w-full h-screen">
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 overflow-auto">
-        <div className="w-full mx-4 md:w-1/2 p-12 bg-white rounded-md shadow-md">
-          <h1 className="text-3xl font-semibold mb-4 text-center text-gray-800">
-            Text Processing | Remove "\" character
-          </h1>
-          <textarea
-            className="w-full px-4 py-2 mb-4 h-64 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-            placeholder="Paste your text here..."
-            value={inputText}
-            onChange={handleTextChange}
-          />
-          <button
-            className="w-full bg-blue-500 text-gray-100 font-semibold textl-lg px-4 py-2 rounded-md hover:bg-blue-600 focus:bg-blue-700"
-            onClick={handleProcessText}
+    <>
+      <div className="animated-bg" />
+
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        <Header theme={theme} toggleTheme={toggleTheme} />
+
+        <main style={{
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '24px'
+        }}>
+          <div
+            className="glass-card"
+            style={{
+              width: '100%',
+              maxWidth: '900px',
+              padding: '40px'
+            }}
           >
-            Process Text
-          </button>
-          {processedText && (
-            <div className="mt-4">
-              <h2 className="text-lg font-semibold mb-2">Processed Text</h2>
-              <textarea
-                className="w-full h-64 px-4 py-2 mb-4 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-blue-500"
-                value={processedText}
+            <CharacterInput
+              characters={characters}
+              onAdd={handleAddCharacter}
+              onRemove={handleRemoveCharacter}
+            />
+
+            <ModeSelector mode={mode} onChange={setMode} />
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '24px'
+            }}>
+              <TextPanel
+                label={t('main.inputLabel')}
+                placeholder={t('main.inputPlaceholder')}
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                showClear
+                onClear={handleClearInput}
+              />
+
+              <TextPanel
+                label={t('main.outputLabel')}
+                placeholder={t('main.outputPlaceholder')}
+                value={outputText}
                 readOnly
+                showCopy
               />
             </div>
-          )}
-        </div>
+
+            {removedCount > 0 && (
+              <div className="stats">
+                <div className="stat-item">
+                  <span className="stat-value">{removedCount}</span>
+                  <span>{t('stats.characters')} {t('stats.removed')}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </main>
+
+        <Footer />
       </div>
-    </div>
+    </>
   )
 }
 

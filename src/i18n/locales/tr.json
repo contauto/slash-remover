@@ -1,0 +1,46 @@
+{
+    "header": {
+        "title": "Cleantify",
+        "subtitle": "Karakter Temizleme Aracı"
+    },
+    "main": {
+        "inputLabel": "Metin Girişi",
+        "inputPlaceholder": "Metninizi buraya yapıştırın...",
+        "outputLabel": "İşlenmiş Metin",
+        "outputPlaceholder": "Temizlenmiş metniniz burada görünecek...",
+        "processButton": "Metni Temizle",
+        "copyButton": "Kopyala",
+        "copied": "Kopyalandı!",
+        "clearButton": "Temizle"
+    },
+    "characters": {
+        "title": "Silinecek Karakterler",
+        "placeholder": "Bir karakter yazın...",
+        "addButton": "Ekle",
+        "presets": "Hızlı Ekle:",
+        "backslash": "Ters Eğik Çizgi",
+        "quote": "Tek Tırnak",
+        "doubleQuote": "Çift Tırnak",
+        "newline": "Yeni Satır",
+        "tab": "Sekme"
+    },
+    "mode": {
+        "title": "Silme Modu",
+        "consecutive": "Sadece Yan Yana",
+        "consecutiveDesc": "Sadece yan yana olan karakterleri sil",
+        "individual": "Tüm Görünümler",
+        "individualDesc": "Konumdan bağımsız tüm örnekleri sil"
+    },
+    "footer": {
+        "madeWith": "Sevgiyle yapıldı",
+        "by": ""
+    },
+    "theme": {
+        "light": "Açık Tema",
+        "dark": "Koyu Tema"
+    },
+    "stats": {
+        "characters": "karakter",
+        "removed": "silindi"
+    }
+}
