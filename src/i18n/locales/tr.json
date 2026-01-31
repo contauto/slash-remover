@@ -31,6 +31,16 @@
         "individual": "Tüm Görünümler",
         "individualDesc": "Konumdan bağımsız tüm örnekleri sil"
     },
+    "emptyLines": {
+        "title": "Boş Satır Temizleme",
+        "enabled": "Boş Satırları Sil",
+        "disabled": "Boş Satırları Koru",
+        "modeAll": "Hepsini Sil",
+        "modeAllDesc": "Tüm boş satırları tamamen kaldır",
+        "modeCollapse": "Teke Düşür",
+        "modeCollapseDesc": "Paragraflar arasında en fazla bir boş satır bırak",
+        "linesRemoved": "satır silindi"
+    },
     "footer": {
         "madeWith": "Sevgiyle yapıldı",
         "by": ""

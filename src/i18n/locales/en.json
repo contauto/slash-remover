@@ -31,6 +31,16 @@
         "individual": "All Occurrences",
         "individualDesc": "Remove all instances regardless of position"
     },
+    "emptyLines": {
+        "title": "Empty Line Removal",
+        "enabled": "Remove Empty Lines",
+        "disabled": "Keep Empty Lines",
+        "modeAll": "Remove All",
+        "modeAllDesc": "Remove all empty lines completely",
+        "modeCollapse": "Collapse to One",
+        "modeCollapseDesc": "Keep max one empty line between paragraphs",
+        "linesRemoved": "lines removed"
+    },
     "footer": {
         "madeWith": "Made with",
         "by": "by"
